@@ -8,9 +8,13 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = AdmissionEasy
 build_property.RootNamespace = AdmissionEasy
-build_property.ProjectDir = C:\Users\Михаил\RiderProjects\AdmissionEasy\AdmissionEasy\
+build_property.ProjectDir = C:\AdmissionEasy\AdmissionEasy\AdmissionEasy\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Михаил\RiderProjects\AdmissionEasy\AdmissionEasy
+build_property.MSBuildProjectDirectory = C:\AdmissionEasy\AdmissionEasy\AdmissionEasy
 build_property._RazorSourceGeneratorDebug = 
+
+[C:/AdmissionEasy/AdmissionEasy/AdmissionEasy/Views/Home/index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxpbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

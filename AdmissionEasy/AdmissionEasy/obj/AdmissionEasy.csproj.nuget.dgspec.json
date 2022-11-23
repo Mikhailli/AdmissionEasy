@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Михаил\\RiderProjects\\AdmissionEasy\\AdmissionEasy\\AdmissionEasy.csproj": {}
+    "C:\\AdmissionEasy\\AdmissionEasy\\AdmissionEasy\\AdmissionEasy.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Михаил\\RiderProjects\\AdmissionEasy\\AdmissionEasy\\AdmissionEasy.csproj": {
+    "C:\\AdmissionEasy\\AdmissionEasy\\AdmissionEasy\\AdmissionEasy.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Михаил\\RiderProjects\\AdmissionEasy\\AdmissionEasy\\AdmissionEasy.csproj",
+        "projectUniqueName": "C:\\AdmissionEasy\\AdmissionEasy\\AdmissionEasy\\AdmissionEasy.csproj",
         "projectName": "AdmissionEasy",
-        "projectPath": "C:\\Users\\Михаил\\RiderProjects\\AdmissionEasy\\AdmissionEasy\\AdmissionEasy.csproj",
+        "projectPath": "C:\\AdmissionEasy\\AdmissionEasy\\AdmissionEasy\\AdmissionEasy.csproj",
         "packagesPath": "C:\\Users\\Михаил\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Михаил\\RiderProjects\\AdmissionEasy\\AdmissionEasy\\obj\\",
+        "outputPath": "C:\\AdmissionEasy\\AdmissionEasy\\AdmissionEasy\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -43,6 +43,16 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "EntityFramework.SqlServerCompact": {
+              "target": "Package",
+              "version": "[6.4.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

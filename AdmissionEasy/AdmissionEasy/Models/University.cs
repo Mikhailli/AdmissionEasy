@@ -1,7 +1,7 @@
-﻿namespace AdmissionEasy.Models;
+﻿#nullable enable
+namespace AdmissionEasy.Models;
 
-public class University
+public class University : Entity<int>
 {
-    public int Id { get; set; }
-    public string Title { get; set; }
+    public virtual string Title { get; set; }
 }

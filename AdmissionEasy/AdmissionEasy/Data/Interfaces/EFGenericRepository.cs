@@ -1,4 +1,5 @@
-﻿using System.Linq.Expressions;
+﻿#nullable enable
+using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -15,9 +16,9 @@ public class EFGenericRepository<TEntity> : IGenericRepository<TEntity> where TE
         _dbSet = _dbContext.Set<TEntity>();
     }
 
-    protected IQueryable<TEntity> GetQueryable(Expression<Func<TEntity, bool>> filter = null,
-        Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
-        Expression<Func<TEntity, object>>[] includes = null, int? skip = null,
+    protected IQueryable<TEntity> GetQueryable(Expression<Func<TEntity, bool>>? filter = null,
+        Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null,
+        Expression<Func<TEntity, object>>[]? includes = null, int? skip = null,
         int? take = null)
     {
         IQueryable<TEntity> query = _dbSet;
@@ -57,30 +58,40 @@ public class EFGenericRepository<TEntity> : IGenericRepository<TEntity> where TE
 
         return _dbSet.Find(id);
     }
+    
+    public virtual ValueTask<TEntity?> GetByIdAsync(object id)
+    {
+        return _dbSet.FindAsync(id);
+    }
 
     public virtual IEnumerable<TEntity> GetAll()
     {
         return GetQueryable().AsEnumerable();
     }
 
-    public IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> filter = null,
-        Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
-        Expression<Func<TEntity, object>>[] includes = null, int? skip = null,
+    public IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>>? filter = null,
+        Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null,
+        Expression<Func<TEntity, object>>[]? includes = null, int? skip = null,
         int? take = null)
     {
         return GetQueryable(filter, orderBy, includes, skip, take).ToList();
     }
     
-    public Task<List<TEntity>> GetAsync(Expression<Func<TEntity, bool>> filter = null,
-        Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
-        Expression<Func<TEntity, object>>[] includes = null, int? skip = null,
+    public Task<List<TEntity>> GetAsync(Expression<Func<TEntity, bool>>? filter = null,
+        Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null,
+        Expression<Func<TEntity, object>>[]? includes = null, int? skip = null,
         int? take = null)
     {
         return GetQueryable(filter, orderBy, includes, skip, take).ToListAsync();
     }
 
-    public int GetCount(Expression<Func<TEntity, bool>> predicate = null)
+    public int GetCount(Expression<Func<TEntity, bool>>? predicate = null)
     {
         return GetQueryable(predicate).Count();
+    }
+
+    public TEntity Create()
+    {
+        return _dbSet.CreateProxy();
     }
 }

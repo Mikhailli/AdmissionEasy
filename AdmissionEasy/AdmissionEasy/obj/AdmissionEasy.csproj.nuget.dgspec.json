@@ -44,9 +44,9 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
-            "EntityFramework.SqlServerCompact": {
+            "Microsoft.EntityFrameworkCore.Proxies": {
               "target": "Package",
-              "version": "[6.4.4, )"
+              "version": "[7.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",

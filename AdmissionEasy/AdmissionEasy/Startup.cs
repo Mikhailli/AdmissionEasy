@@ -16,7 +16,7 @@ public class Startup
     {
         services.AddMvc();
         var connection = Configuration.GetConnectionString("DefaultConnection");
-        services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connection));
+        services.AddDbContext<ApplicationContext>(options => options.UseLazyLoadingProxies().UseSqlServer(connection));
         services.AddControllersWithViews();
     }
  

@@ -1,8 +1,8 @@
-﻿namespace AdmissionEasy.Models;
+﻿#nullable enable
+namespace AdmissionEasy.Models;
 
-public class Subject
+public class Subject : Entity<int>
 {
-    public int Id { get; set; }
-    public string Title { get; set; }
-    public IList<AreaOfStudy> AreaOfStudies { get; } = new List<AreaOfStudy>();
+    public virtual string Title { get; set; }
+    public virtual IEnumerable<AreaOfStudy> AreaOfStudies { get; } = new List<AreaOfStudy>();
 }

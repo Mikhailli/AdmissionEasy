@@ -1,4 +1,4 @@
-﻿using System.Data.Entity;
+﻿#nullable enable
 namespace AdmissionEasy.Models;
 
 public class EFInstituteRepository : EFGenericRepository<Institute>

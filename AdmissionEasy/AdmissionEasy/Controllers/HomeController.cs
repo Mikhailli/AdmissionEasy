@@ -1,4 +1,4 @@
-﻿using System.Data.Entity;
+﻿#nullable enable
 using AdmissionEasy.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,14 +6,16 @@ namespace AdmissionEasy.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly ApplicationContext db;
+    private readonly ApplicationContext _db;
     public HomeController(ApplicationContext context)
     {
-        db = context;
+        _db = context;
     }
     public IActionResult Index()
     {
-        var t = new EFGenericRepository<Institute>(db);
+        var t = new EFInstituteRepository(_db);
+        var d = t.Create();
+        
         var e = t.GetAll();
         return View();
     }

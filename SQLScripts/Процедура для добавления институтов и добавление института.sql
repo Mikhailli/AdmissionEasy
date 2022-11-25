@@ -1,18 +1,14 @@
-USE [AdmissionEasy]
+USE [db_aa2d2]
 GO
 
-CREATE PROCEDURE AddInstitute @university_id INT, @institute_title nvarchar(2048)
-AS  
-   BEGIN
-   IF NOT EXISTS (SELECT * FROM Institutes 
-                   WHERE UniversityId = @university_id
-                   AND Title = @institute_title)
+
+BEGIN
+   IF NOT EXISTS (SELECT * FROM Institute 
+                   WHERE UniversityId = 1
+                   AND Title = N'Институт космических и информационных технологий')
 		BEGIN
-			INSERT INTO Institutes(UniversityId, Title)
-			VALUES (@university_id, @institute_title)
+			INSERT INTO Institute(UniversityId, Title)
+			VALUES (1, N'Институт космических и информационных технологий')
 		END
 END
-RETURN
-GO
 
-EXECUTE AddInstitute 1, N'Институт космических и информационных технологий'

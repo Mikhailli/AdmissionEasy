@@ -1,23 +1,18 @@
 ﻿#nullable enable
-using AdmissionEasy.Data.Implementation.SpecificRepositories;
 using AdmissionEasy.Data.Services;
 using AdmissionEasy.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
-using Microsoft.EntityFrameworkCore;
 
 namespace AdmissionEasy.Controllers;
 
 public class HomeController : Controller
 {
     private readonly ApplicationContext _db;
-    private readonly InstituteService _instituteService;
     private readonly AllServicesTogether _allServicesTogether;
     
     public HomeController(ApplicationContext context)
     {
         _db = context;
-        _instituteService = new InstituteService( new EFInstituteRepository(_db));
         _allServicesTogether = new AllServicesTogether(_db);
     }
     public IActionResult Index()

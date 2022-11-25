@@ -1,7 +1,6 @@
-﻿using System.Runtime.CompilerServices;
+﻿#nullable enable
 using AdmissionEasy.Data.Implementation.SpecificRepositories;
 using AdmissionEasy.Models;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace AdmissionEasy.Controllers
 {
@@ -61,10 +60,5 @@ namespace AdmissionEasy.Controllers
             viewBug.Subjects = new EFSubjectRepository(db).GetAll();
             return viewBug;
         }
-
-        /*public IEnumerable<AreaOfStudy> GetAreasOfStudyFromViewData(this ViewDataDictionary viewData)
-        {
-            return viewData["AreasOfStudy"] as IEnumerable<AreaOfStudy>;
-        }*/
     }
 }

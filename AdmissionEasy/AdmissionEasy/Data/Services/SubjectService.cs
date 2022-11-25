@@ -1,4 +1,5 @@
-﻿using AdmissionEasy.Data.Implementation.SpecificRepositories;
+﻿#nullable enable
+using AdmissionEasy.Data.Implementation.SpecificRepositories;
 using AdmissionEasy.Models;
 
 namespace AdmissionEasy.Data.Services;

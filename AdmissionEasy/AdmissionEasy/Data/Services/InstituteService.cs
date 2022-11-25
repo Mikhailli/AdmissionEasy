@@ -1,4 +1,5 @@
-﻿using AdmissionEasy.Models;
+﻿#nullable enable
+using AdmissionEasy.Models;
 
 namespace AdmissionEasy.Data.Services;
 

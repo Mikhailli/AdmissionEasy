@@ -16,7 +16,7 @@ public class EFGenericRepository<TEntity> : IGenericRepository<TEntity> where TE
         _dbSet = _dbContext.Set<TEntity>();
     }
 
-    protected IQueryable<TEntity> GetQueryable(Expression<Func<TEntity, bool>>? filter = null,
+    public IQueryable<TEntity> GetQueryable(Expression<Func<TEntity, bool>>? filter = null,
         Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null,
         Expression<Func<TEntity, object>>[]? includes = null, int? skip = null,
         int? take = null)
@@ -88,10 +88,5 @@ public class EFGenericRepository<TEntity> : IGenericRepository<TEntity> where TE
     public int GetCount(Expression<Func<TEntity, bool>>? predicate = null)
     {
         return GetQueryable(predicate).Count();
-    }
-
-    public TEntity Create()
-    {
-        return _dbSet.CreateProxy();
     }
 }

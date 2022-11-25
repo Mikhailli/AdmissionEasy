@@ -4,6 +4,7 @@ using AdmissionEasy.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,13 +12,18 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AdmissionEasy.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20221125060627_delete_basis_of_education")]
+    partial class deletebasisofeducation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.0")
+                .HasAnnotation("Proxies:ChangeTracking", true)
+                .HasAnnotation("Proxies:CheckEquality", true)
+                .HasAnnotation("Proxies:LazyLoading", true)
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -88,29 +94,6 @@ namespace AdmissionEasy.Migrations
                     b.HasIndex("LevelOfEducationId");
 
                     b.ToTable("AreaOfStudy");
-                });
-
-            modelBuilder.Entity("AdmissionEasy.Models.AreaOfStudySubject", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("AreaOfStudyId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SubjectId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AreaOfStudyId");
-
-                    b.HasIndex("SubjectId");
-
-                    b.ToTable("AreaOfStudySubject");
                 });
 
             modelBuilder.Entity("AdmissionEasy.Models.FormOfEducation", b =>
@@ -203,6 +186,21 @@ namespace AdmissionEasy.Migrations
                     b.ToTable("University");
                 });
 
+            modelBuilder.Entity("AreaOfStudySubject", b =>
+                {
+                    b.Property<int>("AreaOfStudiesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SubjectsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("AreaOfStudiesId", "SubjectsId");
+
+                    b.HasIndex("SubjectsId");
+
+                    b.ToTable("AreaOfStudySubject");
+                });
+
             modelBuilder.Entity("AdmissionEasy.Models.AreaOfStudy", b =>
                 {
                     b.HasOne("AdmissionEasy.Models.AdditionalInformationAboutAreaOfStudy", "AdditionalInformationAboutAreaOfStudy")
@@ -238,25 +236,6 @@ namespace AdmissionEasy.Migrations
                     b.Navigation("LevelOfEducation");
                 });
 
-            modelBuilder.Entity("AdmissionEasy.Models.AreaOfStudySubject", b =>
-                {
-                    b.HasOne("AdmissionEasy.Models.AreaOfStudy", "AreaOfStudy")
-                        .WithMany()
-                        .HasForeignKey("AreaOfStudyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("AdmissionEasy.Models.Subject", "Subject")
-                        .WithMany()
-                        .HasForeignKey("SubjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("AreaOfStudy");
-
-                    b.Navigation("Subject");
-                });
-
             modelBuilder.Entity("AdmissionEasy.Models.Institute", b =>
                 {
                     b.HasOne("AdmissionEasy.Models.University", "University")
@@ -266,6 +245,21 @@ namespace AdmissionEasy.Migrations
                         .IsRequired();
 
                     b.Navigation("University");
+                });
+
+            modelBuilder.Entity("AreaOfStudySubject", b =>
+                {
+                    b.HasOne("AdmissionEasy.Models.AreaOfStudy", null)
+                        .WithMany()
+                        .HasForeignKey("AreaOfStudiesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AdmissionEasy.Models.Subject", null)
+                        .WithMany()
+                        .HasForeignKey("SubjectsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

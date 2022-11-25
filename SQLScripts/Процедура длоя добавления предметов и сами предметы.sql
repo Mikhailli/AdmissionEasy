@@ -1,28 +1,101 @@
-USE [AdmissionEasy]
+USE [db_aa2d2]
 GO
 
-CREATE PROCEDURE AddSubject @subject_title nvarchar(2048)
-AS  
-   BEGIN
-   IF NOT EXISTS (SELECT * FROM Subjects 
-                   WHERE Title = @subject_title)
+  
+BEGIN
+IF NOT EXISTS (SELECT * FROM Subjects 
+                   WHERE Title = N'Математика (профиль)')
 		BEGIN
 			INSERT INTO Subjects(Title)
-			VALUES (@subject_title)
+			VALUES (N'Математика (профиль)')
 		END
 END
-RETURN
-GO
+BEGIN
+   IF NOT EXISTS (SELECT * FROM Subjects 
+                   WHERE Title = N'Русский язык')
+		BEGIN
+			INSERT INTO Subjects(Title)
+			VALUES (N'Русский язык')
+		END
+   END
 
-EXECUTE AddSubject N'Математика (профиль)'
-EXECUTE AddSubject N'Русский язык'
-EXECUTE AddSubject N'Физика'
-EXECUTE AddSubject N'Химия'
-EXECUTE AddSubject N'История'
-EXECUTE AddSubject N'Обществознание'
-EXECUTE AddSubject N'Информатика'
-EXECUTE AddSubject N'Биология'
-EXECUTE AddSubject N'География'
-EXECUTE AddSubject N'Английский язык'
-EXECUTE AddSubject N'Литература'
-EXECUTE AddSubject N'Физика/информатика'
+BEGIN
+   IF NOT EXISTS (SELECT * FROM Subjects 
+                   WHERE Title = N'Физика')
+		BEGIN
+			INSERT INTO Subjects(Title)
+			VALUES (N'Физика')
+		END
+   END
+BEGIN
+IF NOT EXISTS (SELECT * FROM Subjects 
+                   WHERE Title = N'Химия')
+		BEGIN
+			INSERT INTO Subjects(Title)
+			VALUES (N'Химия')
+		END
+END
+BEGIN
+IF NOT EXISTS (SELECT * FROM Subjects 
+                   WHERE Title = N'История')
+		BEGIN
+			INSERT INTO Subjects(Title)
+			VALUES (N'История')
+		END
+END
+BEGIN
+IF NOT EXISTS (SELECT * FROM Subjects 
+                   WHERE Title = N'Обществознание')
+		BEGIN
+			INSERT INTO Subjects(Title)
+			VALUES (N'Обществознание')
+		END
+END
+BEGIN
+IF NOT EXISTS (SELECT * FROM Subjects 
+                   WHERE Title = N'Информатика')
+		BEGIN
+			INSERT INTO Subjects(Title)
+			VALUES (N'Информатика')
+		END
+END
+BEGIN
+IF NOT EXISTS (SELECT * FROM Subjects 
+                   WHERE Title = N'Биология')
+		BEGIN
+			INSERT INTO Subjects(Title)
+			VALUES (N'Биология')
+		END
+END
+BEGIN
+IF NOT EXISTS (SELECT * FROM Subjects 
+                   WHERE Title = N'География')
+		BEGIN
+			INSERT INTO Subjects(Title)
+			VALUES (N'География')
+		END
+END
+BEGIN
+IF NOT EXISTS (SELECT * FROM Subjects 
+                   WHERE Title = N'Английский язык')
+		BEGIN
+			INSERT INTO Subjects(Title)
+			VALUES (N'Английский язык')
+		END
+END
+BEGIN
+IF NOT EXISTS (SELECT * FROM Subjects 
+                   WHERE Title = N'Литература')
+		BEGIN
+			INSERT INTO Subjects(Title)
+			VALUES (N'Литература')
+		END
+END
+BEGIN
+IF NOT EXISTS (SELECT * FROM Subjects 
+                   WHERE Title = N'Физика/информатика')
+		BEGIN
+			INSERT INTO Subjects(Title)
+			VALUES (N'Физика/информатика')
+		END
+END

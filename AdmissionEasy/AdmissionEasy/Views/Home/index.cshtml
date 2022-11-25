@@ -1,14 +1,34 @@
-﻿@{
+﻿@using AdmissionEasy.Models
+@using Microsoft.AspNetCore.Mvc.ViewFeatures.Buffers
+
+@{
     Layout = null;
 }
-<!doctype html>
+<!DOCTYPE html>
+ 
 <html>
 <head>
-    <title>Hello ASP.NET MVC Core</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width">
+    <title>Магазин смартфонов</title>
 </head>
 <body>
-<h2>Привет мир!!!</h2>
+<h3>Смартфоны</h3>
+<table>
+    <tr>
+        <td>Модель</td>
+        <td>Производитель</td>
+        <td>Цена</td>
+        <td></td>
+    </tr>
+    
+    @foreach (var phone in ViewBag.AreasOfStudy)
+    {
+        <tr>
+            <td>@phone.Title</td>
+            <td>@phone.LevelOfEducation.Title</td>
+            <td>@phone.Institute.Title</td>
+            <td><a href="~/Home/Buy/@phone.Id">Купить</a></td>
+        </tr>
+    }
+</table>
 </body>
 </html>

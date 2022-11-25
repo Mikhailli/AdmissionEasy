@@ -7,4 +7,9 @@ public class EFInstituteRepository : EFGenericRepository<Institute>
     {
         
     }
+
+    public Institute GetInstituteByTitle(string title)
+    {
+        return GetQueryable(i => i.Title == title).FirstOrDefault();
+    }
 }

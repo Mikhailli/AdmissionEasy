@@ -154,7 +154,7 @@ namespace AdmissionEasy.Migrations
 
                     b.HasIndex("UniversityId");
 
-                    b.ToTable("Institutes");
+                    b.ToTable("Institute");
                 });
 
             modelBuilder.Entity("AdmissionEasy.Models.LevelOfEducation", b =>
@@ -205,7 +205,7 @@ namespace AdmissionEasy.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Universities");
+                    b.ToTable("University");
                 });
 
             modelBuilder.Entity("AreaOfStudySubject", b =>

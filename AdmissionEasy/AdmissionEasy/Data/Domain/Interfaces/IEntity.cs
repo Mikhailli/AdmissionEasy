@@ -1,5 +1,5 @@
 ﻿#nullable enable
-namespace AdmissionEasy.Models;
+namespace AdmissionEasy.Data.Domain.Interfaces;
 
 public interface IEntity<T>
 {

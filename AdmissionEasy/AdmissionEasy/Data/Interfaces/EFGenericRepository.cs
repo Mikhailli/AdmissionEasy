@@ -1,22 +1,21 @@
 ﻿#nullable enable
 using System.Linq.Expressions;
+using AdmissionEasy.Data.Domain.Interfaces;
+using AdmissionEasy.Models;
 using Microsoft.EntityFrameworkCore;
 
-
-namespace AdmissionEasy.Models;
+namespace AdmissionEasy.Data.Interfaces;
 
 public class EFGenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : BaseEntity
 {
-    protected readonly ApplicationContext _dbContext;
-    protected readonly DbSet<TEntity> _dbSet;
+    private readonly DbSet<TEntity> _dbSet;
 
-    public EFGenericRepository(ApplicationContext dbContext)
+    protected EFGenericRepository(ApplicationContext dbContext)
     {
-        _dbContext = dbContext;
-        _dbSet = _dbContext.Set<TEntity>();
+        _dbSet = dbContext.Set<TEntity>();
     }
 
-    public IQueryable<TEntity> GetQueryable(Expression<Func<TEntity, bool>>? filter = null,
+    protected IQueryable<TEntity> GetQueryable(Expression<Func<TEntity, bool>>? filter = null,
         Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null,
         Expression<Func<TEntity, object>>[]? includes = null, int? skip = null,
         int? take = null)
@@ -53,10 +52,7 @@ public class EFGenericRepository<TEntity> : IGenericRepository<TEntity> where TE
 
     public virtual TEntity GetById(object? id)
     {
-        if (id is null)
-            return null;
-
-        return _dbSet.Find(id);
+        return id is null ? null! : _dbSet.Find(id)!;
     }
     
     public virtual ValueTask<TEntity?> GetByIdAsync(object id)

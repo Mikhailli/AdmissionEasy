@@ -20,7 +20,7 @@ namespace AdmissionEasy.Migrations
 
             migrationBuilder.RenameColumn(
                 name: "id",
-                table: "Universities",
+                table: "University",
                 newName: "Id");
 
             migrationBuilder.RenameColumn(
@@ -30,7 +30,7 @@ namespace AdmissionEasy.Migrations
 
             migrationBuilder.RenameColumn(
                 name: "id",
-                table: "Institutes",
+                table: "Institute",
                 newName: "Id");
 
             migrationBuilder.RenameColumn(
@@ -83,7 +83,7 @@ namespace AdmissionEasy.Migrations
 
             migrationBuilder.RenameColumn(
                 name: "Id",
-                table: "Universities",
+                table: "University",
                 newName: "id");
 
             migrationBuilder.RenameColumn(
@@ -93,7 +93,7 @@ namespace AdmissionEasy.Migrations
 
             migrationBuilder.RenameColumn(
                 name: "Id",
-                table: "Institutes",
+                table: "Institute",
                 newName: "id");
 
             migrationBuilder.RenameColumn(

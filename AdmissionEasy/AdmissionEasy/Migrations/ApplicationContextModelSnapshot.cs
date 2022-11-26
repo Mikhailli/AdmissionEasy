@@ -177,11 +177,16 @@ namespace AdmissionEasy.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int?>("AreaOfStudyId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AreaOfStudyId");
 
                     b.ToTable("Subjects");
                 });
@@ -266,6 +271,18 @@ namespace AdmissionEasy.Migrations
                         .IsRequired();
 
                     b.Navigation("University");
+                });
+
+            modelBuilder.Entity("AdmissionEasy.Models.Subject", b =>
+                {
+                    b.HasOne("AdmissionEasy.Models.AreaOfStudy", null)
+                        .WithMany("Subjects")
+                        .HasForeignKey("AreaOfStudyId");
+                });
+
+            modelBuilder.Entity("AdmissionEasy.Models.AreaOfStudy", b =>
+                {
+                    b.Navigation("Subjects");
                 });
 #pragma warning restore 612, 618
         }

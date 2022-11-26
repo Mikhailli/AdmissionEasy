@@ -1,7 +1,8 @@
 ﻿#nullable enable
 using System.Linq.Expressions;
+using AdmissionEasy.Data.Domain.Interfaces;
 
-namespace AdmissionEasy.Models;
+namespace AdmissionEasy.Data.Interfaces;
 
 public interface IGenericRepository<TEntity> where TEntity : BaseEntity
 {

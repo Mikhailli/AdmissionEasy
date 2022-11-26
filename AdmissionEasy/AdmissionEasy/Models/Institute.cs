@@ -1,10 +1,12 @@
 ﻿#nullable enable
 
+using AdmissionEasy.Data.Domain.Interfaces;
+
 namespace AdmissionEasy.Models;
 
-public class Institute : Entity<int>
+public sealed class Institute : Entity<int>
 {
-    public virtual string Title { get; set; }
-    public virtual int UniversityId { get; set; }
-    public virtual University University { get; set; }
+    public string Title { get; set; } = null!;
+    public int UniversityId { get; set; }
+    public University University { get; set; } = null!;
 }

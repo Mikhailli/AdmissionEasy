@@ -1,4 +1,5 @@
 ﻿#nullable enable
+using AdmissionEasy.Data.Interfaces;
 using AdmissionEasy.Models;
 
 namespace AdmissionEasy.Data.Implementation.SpecificRepositories

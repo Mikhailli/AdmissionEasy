@@ -17,23 +17,8 @@ public class HomeController : Controller
     }
     public IActionResult Index()
     {
+        ViewBag.InfoForTable = _allServicesTogether.CreateMainDto();
 
-        var e = _allServicesTogether.AreaOfStudySubjects;
-        var institutes = _allServicesTogether.AreasOfStudy;
-        ViewDataDictionaryExtensions.SetViewBug(ViewBag, _db);
-        /*foreach (var areaOfStudy in ViewBug.AreasOfStudy)
-        {
-            areaOfStudy.Instute = (viewBug.Institutes as ICollection<Institute>).Select(institute => institute.Id == areaOfStudy.InstituteId);
-        }*/
-        //ViewData.SetViewData(_db);
         return View();
     }
-    /*[HttpGet]                                                                                                                                                                 
-    public IActionResult GetAreasOfStudy(int? id)
-    {
-        ViewData.SetViewDataForUniversities(_db);
-        if (id is null) return RedirectToAction("Index");
-        var t = ViewData.GetAreasOfStudyFromViewData();
-        return View();
-    }*/
 }

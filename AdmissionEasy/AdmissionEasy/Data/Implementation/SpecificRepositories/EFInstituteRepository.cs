@@ -1,5 +1,8 @@
 ﻿#nullable enable
-namespace AdmissionEasy.Models;
+using AdmissionEasy.Data.Interfaces;
+using AdmissionEasy.Models;
+
+namespace AdmissionEasy.Data.Implementation.SpecificRepositories;
 
 public class EFInstituteRepository : EFGenericRepository<Institute>
 {
@@ -10,6 +13,6 @@ public class EFInstituteRepository : EFGenericRepository<Institute>
 
     public Institute GetInstituteByTitle(string title)
     {
-        return GetQueryable(i => i.Title == title).FirstOrDefault();
+        return GetQueryable(i => i.Title == title).FirstOrDefault() ?? throw new InvalidOperationException();
     }
 }

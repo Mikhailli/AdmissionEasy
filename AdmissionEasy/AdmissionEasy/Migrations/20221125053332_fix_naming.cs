@@ -36,11 +36,11 @@ namespace AdmissionEasy.Migrations
 
             migrationBuilder.DropForeignKey(
                 name: "FK_Institutes_Universities_UniversityId",
-                table: "Institutes");
+                table: "Institute");
 
             migrationBuilder.DropPrimaryKey(
                 name: "PK_Universities",
-                table: "Universities");
+                table: "University");
 
             migrationBuilder.DropPrimaryKey(
                 name: "PK_LevelOfEducations",
@@ -48,7 +48,7 @@ namespace AdmissionEasy.Migrations
 
             migrationBuilder.DropPrimaryKey(
                 name: "PK_Institutes",
-                table: "Institutes");
+                table: "Institute");
 
             migrationBuilder.DropPrimaryKey(
                 name: "PK_FormOfEducations",
@@ -67,7 +67,7 @@ namespace AdmissionEasy.Migrations
                 table: "AdditionalInformationAboutAreaOfStudies");
 
             migrationBuilder.RenameTable(
-                name: "Universities",
+                name: "University",
                 newName: "University");
 
             migrationBuilder.RenameTable(
@@ -75,7 +75,7 @@ namespace AdmissionEasy.Migrations
                 newName: "LevelOfEducation");
 
             migrationBuilder.RenameTable(
-                name: "Institutes",
+                name: "Institute",
                 newName: "Institute");
 
             migrationBuilder.RenameTable(
@@ -277,7 +277,7 @@ namespace AdmissionEasy.Migrations
 
             migrationBuilder.RenameTable(
                 name: "University",
-                newName: "Universities");
+                newName: "University");
 
             migrationBuilder.RenameTable(
                 name: "LevelOfEducation",
@@ -285,7 +285,7 @@ namespace AdmissionEasy.Migrations
 
             migrationBuilder.RenameTable(
                 name: "Institute",
-                newName: "Institutes");
+                newName: "Institute");
 
             migrationBuilder.RenameTable(
                 name: "FormOfEducation",
@@ -305,7 +305,7 @@ namespace AdmissionEasy.Migrations
 
             migrationBuilder.RenameIndex(
                 name: "IX_Institute_UniversityId",
-                table: "Institutes",
+                table: "Institute",
                 newName: "IX_Institutes_UniversityId");
 
             migrationBuilder.RenameIndex(
@@ -335,7 +335,7 @@ namespace AdmissionEasy.Migrations
 
             migrationBuilder.AddPrimaryKey(
                 name: "PK_Universities",
-                table: "Universities",
+                table: "University",
                 column: "Id");
 
             migrationBuilder.AddPrimaryKey(
@@ -345,7 +345,7 @@ namespace AdmissionEasy.Migrations
 
             migrationBuilder.AddPrimaryKey(
                 name: "PK_Institutes",
-                table: "Institutes",
+                table: "Institute",
                 column: "Id");
 
             migrationBuilder.AddPrimaryKey(
@@ -396,7 +396,7 @@ namespace AdmissionEasy.Migrations
                 name: "FK_AreaOfStudies_Institutes_InstituteId",
                 table: "AreaOfStudies",
                 column: "InstituteId",
-                principalTable: "Institutes",
+                principalTable: "Institute",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
 
@@ -418,9 +418,9 @@ namespace AdmissionEasy.Migrations
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Institutes_Universities_UniversityId",
-                table: "Institutes",
+                table: "Institute",
                 column: "UniversityId",
-                principalTable: "Universities",
+                principalTable: "University",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
         }

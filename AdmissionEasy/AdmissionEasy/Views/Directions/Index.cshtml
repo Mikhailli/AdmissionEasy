@@ -1,0 +1,125 @@
+﻿@using AdmissionEasy.Data.Services
+@using AdmissionEasy.Models
+@using AdmissionEasy.Models.DTO
+@using Microsoft.AspNetCore.Mvc.ViewFeatures.Buffers
+
+@{
+    Layout = "_Layout";
+}
+@functions {
+    public string getNumberEnd(int num)
+    {
+        if (num % 100 == 11 || num % 100 == 12 || num % 100 == 13 || num % 100 == 14)
+            return (num + " мест");
+        else if (num % 10 == 1)
+            return (num + " место");
+        else if (num % 10 == 2 || num % 10 == 3 || num % 10 == 4)
+            return (num + " места");
+        else
+            return (num + " мест");
+    }
+}
+
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+<link rel="stylesheet" type="text/css" href="~/css/index.css">
+  <div class="features">
+      <table class="stripe row-border hover table-opacity-background display nowrap text-center" id="anime">
+           <thead>
+            <tr>
+                <th>Специальность</th>
+                <th>Стоимость (руб/год)</th>
+                <th>Бюджетная основа</th>
+                <th>Платная основа</th>
+            </tr>
+        </thead>
+        <tbody>
+          @for(var i = 0; i < ViewBag.InfoForTable.EducationAreas.Count; i++)
+              {
+                  <tr>
+                      <td>
+                          <div class="educationAreaInfo">
+                              <div>
+                                  <a class="spectitle">@(ViewBag.InfoForTable.EducationAreas[i].Title)</a>
+                              </div>
+                              <div>
+                                  <i>
+                                      @(ViewBag.InfoForTable.EducationAreas[i].LevelOfEducation.Title + " | " + ViewBag.InfoForTable.EducationAreas[i].FormOfEducation.Title)
+                                  </i>
+                              </div>
+                              <div>
+                                  ЕГЭ:
+                                  <span>
+                                      @for (var j = 0; j < ViewBag.InfoForTable.Subjects[i].Count; j++)
+                                      {
+                                          if (j + 1 == ViewBag.InfoForTable.Subjects[i].Count)
+                                          {
+                                              @(ViewBag.InfoForTable.Subjects[i][j].Title)
+                                          }
+                                          else
+                                          {
+                                              @(ViewBag.InfoForTable.Subjects[i][j].Title + ", ")
+                                          }
+                                      }
+                                  </span>
+                              </div>
+                          </div>
+                      </td>
+                      <td>
+                          <div style="text-align: center;">
+                              <a class="tooltipq" title="минимальная стоимость по специальности (руб/год)">
+                                  @("от " + ViewBag.InfoForTable.EducationAreas[i].AdditionalInformationAboutAreaOfStudy.Cost + " ")
+                                  <font class="price">₽</font>
+                              </a>
+                              <span class="yearVuzInfoSpan">
+                                  <a class="tooltipq fixToolT" title="информация о стоимости за 2023 год">
+                                      2023
+                                  </a>
+                              </span>
+                          </div>
+                      </td>
+                      <td>
+                          <div style="text-align: center;">
+                              <a class="tooltipq" title="минимальный суммарный проходной балл">
+                                  @("от " + ViewBag.InfoForTable.EducationAreas[i].AdditionalInformationAboutAreaOfStudy.PassingScoreOnBudget)
+                              </a>
+                              <span class="yearVuzInfoSpan">
+                                  <a class="tooltipq fixToolT" title="информация о количестве мест за 2023 год">
+                                      2023
+                                  </a>
+                              </span>
+                          </div>
+                          <div style="text-align: center;">
+                              <a class="tooltipq" style="font-size: 11px; color: gray;" title="количество бюджетных мест на специальность">
+                                    @getNumberEnd(ViewBag.InfoForTable.EducationAreas[i].AdditionalInformationAboutAreaOfStudy.NumberOfPlacesOnBudget)
+                              </a>
+                          </div>
+                      </td>
+                      <td>
+                          <div style="text-align: center;">
+                              <a class="tooltipq" title="минимальный суммарный проходной балл">
+                                  @("от " + ViewBag.InfoForTable.EducationAreas[i].AdditionalInformationAboutAreaOfStudy.PassingScoreOnBudget)
+                              </a>
+                                  <span class="yearVuzInfoSpan">
+                                      <a class="tooltipq fixToolT" title="информация о количестве мест за 2023 год">
+                                          2023
+                                      </a>
+                                  </span>
+                          </div>
+                          <div style="text-align: center;">
+                              <a class="tooltipq" style="font-size: 11px; color: gray;" title="количество платных мест на специальность">
+                                    @getNumberEnd(ViewBag.InfoForTable.EducationAreas[i].AdditionalInformationAboutAreaOfStudy.NumberOfPlacesOnBudget)
+                              </a>
+                          </div>
+                      </td>
+
+                      @*<td><a href="~/Home/Buy/@(ViewBag.InfoForTable.EducationAreas[i].Institute.University)">Купить</a></td>*@
+                  </tr>
+              }
+        </tbody>
+      </table>
+  </div>
+<script src="//cdn.datatables.net/plug-ins/1.11.5/i18n/ru.json"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script src="~/js/indexMenu.js"></script>

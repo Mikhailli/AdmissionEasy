@@ -23,7 +23,7 @@ public class AllServicesTogether
         _additionalInformationAboutAreaOfStudyRepositoryService = new AdditionalInformationAboutAreaOfStudyService(new EFAdditionalInformationAboutAreaOfStudyRepository(db));
         _areaOfStudyService = new AreaOfStudyService(new EFAreaOfStudyRepository(db));
         _formOfEducationService = new FormOfEducationService(new EFFormOfEducationRepository(db));
-        _instituteService = new InstituteService(new EFInstituteRepository(db));
+        _instituteService = new InstituteService(new EFInstituteRepository(db), new EFUniversityRepository(db));
         _levelOfEducationService = new LevelOfEducationService(new EFLevelOfEducationRepository(db));
         _subjectService = new SubjectService(new EFSubjectRepository(db));
         _universityService = new UniversityService(new EFUniversityRepository(db));

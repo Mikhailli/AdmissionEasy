@@ -1,0 +1,47 @@
+﻿@using AdmissionEasy.Data.Services
+@using AdmissionEasy.Models
+@using AdmissionEasy.Models.DTO
+@using Microsoft.AspNetCore.Mvc.ViewFeatures.Buffers
+
+@{
+    Layout = "_Layout";
+}
+
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+<link rel="stylesheet" type="text/css" href="~/css/index.css">
+  <div class="features">
+      <table class="stripe row-border hover table-opacity-background display nowrap text-center" id="anime">
+           <thead>
+            <tr>
+                <th>Название института</th>
+                <th>Название университета</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (var i = 0; i < ViewBag.InfoForTable.Count; i++)
+            {
+                <tr>
+                    <td>
+                        <div class="educationAreaInfo">
+                            <div>
+                                <a class="spectitle">@(ViewBag.InfoForTable[i].Title)</a>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="educationAreaInfo">
+                            <div>
+                                <a class="spectitle">@(ViewBag.InfoForTable[i].University.Title)</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+      </table>
+  </div>
+<script src="//cdn.datatables.net/plug-ins/1.11.5/i18n/ru.json"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script src="~/js/indexMenu.js"></script>

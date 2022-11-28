@@ -17,4 +17,9 @@ public class UniversityService
     {
         return _repository.GetAll().ToList();
     }
+
+    public University GetById(int id)
+    {
+        return _repository.GetById(id);
+    }
 }

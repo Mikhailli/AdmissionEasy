@@ -15,15 +15,11 @@ public class InstitutesController : Controller
     public InstitutesController(ApplicationContext context)
     {
         _db = context;
-        _instituteService = new InstituteService(new EFInstituteRepository(_db));
-        _universityService = new UniversityService(new EFUniversityRepository(_db));
+        _instituteService = new InstituteService(new EFInstituteRepository(_db), new EFUniversityRepository(_db));
     }
     public IActionResult Index()
     {
-        var insts = _instituteService.GetAll();
-        foreach(var a in insts)
-            a.University = _universityService.GetById(a.UniversityId);
-        ViewBag.InfoForTable = insts;
+        ViewBag.InfoForTable = _instituteService.GetAll();
         return View();
     }
 }

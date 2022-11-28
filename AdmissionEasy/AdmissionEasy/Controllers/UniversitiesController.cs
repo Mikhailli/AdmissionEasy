@@ -15,7 +15,6 @@ public class UniversitiesController : Controller
     public UniversitiesController(ApplicationContext context)
     {
         _db = context;
-        _instituteService = new InstituteService(new EFInstituteRepository(_db));
         _universityService = new UniversityService(new EFUniversityRepository(_db));
     }
     public IActionResult Index()

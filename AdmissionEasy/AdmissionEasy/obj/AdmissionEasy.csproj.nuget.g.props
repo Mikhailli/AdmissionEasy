@@ -5,19 +5,22 @@
     <RestoreTool Condition=" '$(RestoreTool)' == '' ">NuGet</RestoreTool>
     <ProjectAssetsFile Condition=" '$(ProjectAssetsFile)' == '' ">$(MSBuildThisFileDirectory)project.assets.json</ProjectAssetsFile>
     <NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">$(UserProfile)\.nuget\packages\</NuGetPackageRoot>
-    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">C:\Users\Михаил\.nuget\packages\;C:\Program Files (x86)\Microsoft Visual Studio\Shared\NuGetPackages</NuGetPackageFolders>
+    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">C:\Users\Deadcat\.nuget\packages\</NuGetPackageFolders>
     <NuGetProjectStyle Condition=" '$(NuGetProjectStyle)' == '' ">PackageReference</NuGetProjectStyle>
     <NuGetToolVersion Condition=" '$(NuGetToolVersion)' == '' ">6.3.0</NuGetToolVersion>
   </PropertyGroup>
   <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <SourceRoot Include="C:\Users\Михаил\.nuget\packages\" />
-    <SourceRoot Include="C:\Program Files (x86)\Microsoft Visual Studio\Shared\NuGetPackages\" />
+    <SourceRoot Include="C:\Users\Deadcat\.nuget\packages\" />
   </ItemGroup>
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <Import Project="$(NuGetPackageRoot)microsoft.entityframeworkcore\7.0.0\buildTransitive\net6.0\Microsoft.EntityFrameworkCore.props" Condition="Exists('$(NuGetPackageRoot)microsoft.entityframeworkcore\7.0.0\buildTransitive\net6.0\Microsoft.EntityFrameworkCore.props')" />
     <Import Project="$(NuGetPackageRoot)microsoft.entityframeworkcore.design\7.0.0\build\net6.0\Microsoft.EntityFrameworkCore.Design.props" Condition="Exists('$(NuGetPackageRoot)microsoft.entityframeworkcore.design\7.0.0\build\net6.0\Microsoft.EntityFrameworkCore.Design.props')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.clearscript.v8.native.win-x64\7.3.5\build\Microsoft.ClearScript.V8.Native.win-x64.props" Condition="Exists('$(NuGetPackageRoot)microsoft.clearscript.v8.native.win-x64\7.3.5\build\Microsoft.ClearScript.V8.Native.win-x64.props')" />
+    <Import Project="$(NuGetPackageRoot)javascriptengineswitcher.chakracore.native.win-x64\3.20.6\build\JavaScriptEngineSwitcher.ChakraCore.Native.win-x64.props" Condition="Exists('$(NuGetPackageRoot)javascriptengineswitcher.chakracore.native.win-x64\3.20.6\build\JavaScriptEngineSwitcher.ChakraCore.Native.win-x64.props')" />
   </ImportGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <PkgMicrosoft_EntityFrameworkCore_Tools Condition=" '$(PkgMicrosoft_EntityFrameworkCore_Tools)' == '' ">C:\Users\Михаил\.nuget\packages\microsoft.entityframeworkcore.tools\7.0.0</PkgMicrosoft_EntityFrameworkCore_Tools>
+    <PkgMicrosoft_EntityFrameworkCore_Tools Condition=" '$(PkgMicrosoft_EntityFrameworkCore_Tools)' == '' ">C:\Users\Deadcat\.nuget\packages\microsoft.entityframeworkcore.tools\7.0.0</PkgMicrosoft_EntityFrameworkCore_Tools>
+    <PkgMicrosoft_ClearScript_V8_Native_win-x64 Condition=" '$(PkgMicrosoft_ClearScript_V8_Native_win-x64)' == '' ">C:\Users\Deadcat\.nuget\packages\microsoft.clearscript.v8.native.win-x64\7.3.5</PkgMicrosoft_ClearScript_V8_Native_win-x64>
+    <PkgJavaScriptEngineSwitcher_ChakraCore_Native_win-x64 Condition=" '$(PkgJavaScriptEngineSwitcher_ChakraCore_Native_win-x64)' == '' ">C:\Users\Deadcat\.nuget\packages\javascriptengineswitcher.chakracore.native.win-x64\3.20.6</PkgJavaScriptEngineSwitcher_ChakraCore_Native_win-x64>
   </PropertyGroup>
 </Project>

@@ -113,7 +113,7 @@ h1 {
 }
 
 .example-2 .wrapper {
-    background: url(https://srv2.imgonline.com.ua/result_img/imgonline-com-ua-Blur-lamxROl3hnymaZL.jpg) center/cover no-repeat;
+    background: url(back.jpg) center/cover no-repeat;
 }
 
 .example-2 .wrapper:hover .menu-content span {

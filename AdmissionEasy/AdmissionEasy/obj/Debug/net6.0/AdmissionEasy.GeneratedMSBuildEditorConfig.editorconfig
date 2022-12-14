@@ -8,13 +8,29 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = AdmissionEasy
 build_property.RootNamespace = AdmissionEasy
-build_property.ProjectDir = C:\AdmissionEasy\AdmissionEasy\AdmissionEasy\
+build_property.ProjectDir = C:\Users\Deadcat\RiderProjects\AdmissionEasy\AdmissionEasy\AdmissionEasy\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\AdmissionEasy\AdmissionEasy\AdmissionEasy
+build_property.MSBuildProjectDirectory = C:\Users\Deadcat\RiderProjects\AdmissionEasy\AdmissionEasy\AdmissionEasy
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/AdmissionEasy/AdmissionEasy/AdmissionEasy/Views/Home/index.cshtml]
+[C:/Users/Deadcat/RiderProjects/AdmissionEasy/AdmissionEasy/AdmissionEasy/Views/Directions/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlyZWN0aW9uc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Deadcat/RiderProjects/AdmissionEasy/AdmissionEasy/AdmissionEasy/Views/Home/index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxpbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Deadcat/RiderProjects/AdmissionEasy/AdmissionEasy/AdmissionEasy/Views/Institutes/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW5zdGl0dXRlc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Deadcat/RiderProjects/AdmissionEasy/AdmissionEasy/AdmissionEasy/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Deadcat/RiderProjects/AdmissionEasy/AdmissionEasy/AdmissionEasy/Views/Universities/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVW5pdmVyc2l0aWVzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

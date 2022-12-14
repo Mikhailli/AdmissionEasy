@@ -32,7 +32,7 @@ section {
 .footer-distributed p.footer-links {
     font-size: 18px;
     font-weight: bold;
-    color: #ffffff;
+    color: #6e795a;
     margin: 0 0 10px;
     padding: 0;
     transition: ease .25s;
@@ -42,7 +42,7 @@ section {
     display: inline-block;
     line-height: 1.8;
     text-decoration: none;
-    color: inherit;
+    color: #6e795a;
     transition: ease .25s;
 }
 
@@ -50,7 +50,7 @@ section {
     content: "·";
     font-size: 20px;
     left: 0;
-    color: #fff;
+    color: #6e795a;
     display: inline-block;
     padding-right: 5px;
 }

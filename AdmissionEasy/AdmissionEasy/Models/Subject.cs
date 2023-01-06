@@ -1,5 +1,4 @@
 ﻿#nullable enable
-
 using AdmissionEasy.Data.Domain.Interfaces;
 
 namespace AdmissionEasy.Models;

@@ -6,6 +6,7 @@ $(document).ready(function()
                 'rowReorder': true,
                 'order': [],
                 'columnDefs': [
+                    { orderable: true, className: 'reorder', targets: 1 },
                     { orderable: true, className: 'reorder', targets: 2 },
                     { orderable: true, className: 'reorder', targets: 3 },
                     { orderable: false, targets: '_all' }
@@ -21,15 +22,6 @@ $(document).ready(function()
                       'previous': '<',
                       'next': '>'
                   }
-                },
-                        'fnRowCallback': function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
-                          $('td', nRow);
                 }
             });
             });
-
-            jQuery('.htag').click(function() {
-    var txt = jQuery(this).text(); // Получаем текст элемента на который был клик
-    jQuery('input[type="search"]').val(txt); // Вставляем полученный ранее текст в поле поиска
-    jQuery('input[type="search"]').trigger('input'); // Имитируем событие ввода для запуска фильтра
-});

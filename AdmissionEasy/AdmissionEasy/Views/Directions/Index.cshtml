@@ -1,13 +1,14 @@
-﻿@using AdmissionEasy.Data.Services
-@using AdmissionEasy.Models
-@using AdmissionEasy.Models.DTO
-@using Microsoft.AspNetCore.Mvc.ViewFeatures.Buffers
+﻿@using AdmissionEasy.Extensions
+@model AdmissionEasy.ViewModels.DirectionsViewModel
 
 @{
     Layout = "_Layout";
 }
+@{  
+    ViewBag.Title = "Directions";  
+}
 @functions {
-    public string getNumberEnd(int num)
+    private static string GetNumberEnd(int num)
     {
         if (num % 100 == 11 || num % 100 == 12 || num % 100 == 13 || num % 100 == 14)
             return (num + " мест");
@@ -23,6 +24,23 @@
 
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
 <link rel="stylesheet" type="text/css" href="~/css/index.css">
+<div class="py-2">
+    <div class="d-flex flex-row flex-wrap row-content-block">
+        <div class="d-flex flex-row px-2 py-2">
+            <p class="my-auto font-weight-bold">Фильтры</p>
+        </div>
+        <div class="d-flex flex-row px-2 py-2">
+            <label class="my-auto mr-2" for="instituteFilter">Институт:</label>
+            <select class="form-control input-ktm" name="instituteFilter" id="instituteFilter">
+                <option value="">Все институты</option>
+                @foreach (var institute in Model.InstituteTitles.Distinct().OrderBy(title => title))
+                {
+                    <option value="@institute">@institute</option>
+                }
+            </select>
+        </div>
+    </div>
+</div>
   <div class="features">
       <table class="stripe row-border hover table-opacity-background display nowrap text-center" id="anime">
            <thead>
@@ -34,42 +52,32 @@
             </tr>
         </thead>
         <tbody>
-          @for(var i = 0; i < ViewBag.InfoForTable.EducationAreas.Count; i++)
+          @for(var i = 0; i < Model.EducationAreaTitles.Count; i++)
               {
                   <tr>
                       <td>
                           <div class="educationAreaInfo">
                               <div>
-                                  <a class="spectitle">@(ViewBag.InfoForTable.EducationAreas[i].Title)</a>
+                                  <a class="spectitle">@(Model.EducationAreaTitles[i])</a>
                               </div>
                               <div>
                                   <i>
-                                      @(ViewBag.InfoForTable.EducationAreas[i].LevelOfEducation.Title + " | " + ViewBag.InfoForTable.EducationAreas[i].FormOfEducation.Title)
+                                      @(Model.EducationLevelTitles[i] + " | " + Model.EducationFormTitles[i])
                                   </i>
                               </div>
                               <div>
                                   ЕГЭ:
                                   <span>
-                                      @for (var j = 0; j < ViewBag.InfoForTable.Subjects[i].Count; j++)
-                                      {
-                                          if (j + 1 == ViewBag.InfoForTable.Subjects[i].Count)
-                                          {
-                                              @(ViewBag.InfoForTable.Subjects[i][j].Title)
-                                          }
-                                          else
-                                          {
-                                              @(ViewBag.InfoForTable.Subjects[i][j].Title + ", ")
-                                          }
-                                      }
+                                      @(Model.Subjects[i])
                                   </span>
                               </div>
                           </div>
                       </td>
-                      <td>
+                      <td data-sort="@(Model.Costs[i].FillWithZerosAndConvertToString())" data-order="@(Model.Costs[i].FillWithZerosAndConvertToString())">
                           <div style="text-align: center;">
                               <a class="tooltipq" title="минимальная стоимость по специальности (руб/год)">
-                                  @("от " + ViewBag.InfoForTable.EducationAreas[i].AdditionalInformationAboutAreaOfStudy.Cost + " ")
-                                  <font class="price">₽</font>
+                                  @("от " + Model.Costs[i] + " ")
+                                  ₽
                               </a>
                               <span class="yearVuzInfoSpan">
                                   <a class="tooltipq fixToolT" title="информация о стоимости за 2023 год">
@@ -81,7 +89,7 @@
                       <td>
                           <div style="text-align: center;">
                               <a class="tooltipq" title="минимальный суммарный проходной балл">
-                                  @("от " + ViewBag.InfoForTable.EducationAreas[i].AdditionalInformationAboutAreaOfStudy.PassingScoreOnBudget)
+                                  @("от " + Model.PassingScoresOnBudget[i])
                               </a>
                               <span class="yearVuzInfoSpan">
                                   <a class="tooltipq fixToolT" title="информация о количестве мест за 2023 год">
@@ -91,14 +99,14 @@
                           </div>
                           <div style="text-align: center;">
                               <a class="tooltipq" style="font-size: 11px; color: gray;" title="количество бюджетных мест на специальность">
-                                    @getNumberEnd(ViewBag.InfoForTable.EducationAreas[i].AdditionalInformationAboutAreaOfStudy.NumberOfPlacesOnBudget)
+                                  @GetNumberEnd(Model.NumbersOfPlacesOnBudget[i])
                               </a>
                           </div>
                       </td>
                       <td>
                           <div style="text-align: center;">
                               <a class="tooltipq" title="минимальный суммарный проходной балл">
-                                  @("от " + ViewBag.InfoForTable.EducationAreas[i].AdditionalInformationAboutAreaOfStudy.PassingScoreOnBudget)
+                                  @("от " + Model.PassingScoresOnBudget[i])
                               </a>
                                   <span class="yearVuzInfoSpan">
                                       <a class="tooltipq fixToolT" title="информация о количестве мест за 2023 год">
@@ -108,12 +116,10 @@
                           </div>
                           <div style="text-align: center;">
                               <a class="tooltipq" style="font-size: 11px; color: gray;" title="количество платных мест на специальность">
-                                    @getNumberEnd(ViewBag.InfoForTable.EducationAreas[i].AdditionalInformationAboutAreaOfStudy.NumberOfPlacesOnBudget)
+                                  @GetNumberEnd(Model.NumbersOfPlacesOnBudget[i])
                               </a>
                           </div>
                       </td>
-
-                      @*<td><a href="~/Home/Buy/@(ViewBag.InfoForTable.EducationAreas[i].Institute.University)">Купить</a></td>*@
                   </tr>
               }
         </tbody>

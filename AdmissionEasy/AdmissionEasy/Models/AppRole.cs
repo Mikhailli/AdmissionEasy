@@ -6,8 +6,8 @@ namespace AdmissionEasy.Models
     {
         public AppRole() : base() { }
 
-        public AppRole(string Name)
-            : base(Name) 
+        public AppRole(string name)
+            : base(name) 
         { }
     }
 }

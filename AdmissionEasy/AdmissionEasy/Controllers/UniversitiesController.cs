@@ -8,14 +8,11 @@ namespace AdmissionEasy.Controllers;
 
 public class UniversitiesController : Controller
 {
-    private readonly ApplicationContext _db;
-    private readonly InstituteService _instituteService;
     private readonly UniversityService _universityService;
 
     public UniversitiesController(ApplicationContext context)
     {
-        _db = context;
-        _universityService = new UniversityService(new EFUniversityRepository(_db));
+        _universityService = new UniversityService(new EFUniversityRepository(context));
     }
     public IActionResult Index()
     {

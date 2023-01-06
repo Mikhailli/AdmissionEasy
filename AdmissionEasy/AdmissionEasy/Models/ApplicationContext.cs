@@ -6,14 +6,15 @@ namespace AdmissionEasy.Models;
 
 public sealed class ApplicationContext : DbContext
 {
-    public DbSet<University> University { get; set; }
-    public DbSet<Institute> Institute { get; set; }
-    public DbSet<AreaOfStudy> AreaOfStudy { get; set; }
-    public DbSet<Subject> Subjects { get; set; }
-    public DbSet<LevelOfEducation> LevelOfEducation { get; set; }
-    public DbSet<FormOfEducation> FormOfEducation { get; set; }
-    public DbSet<AdditionalInformationAboutAreaOfStudy> AdditionalInformationAboutAreaOfStudy { get; set; }
-    public DbSet<AreaOfStudySubject> AreaOfStudySubject { get; set; }
+    public DbSet<University> University { get; set; } = null!;
+    public DbSet<Institute> Institute { get; set; } = null!;
+    public DbSet<AreaOfStudy> AreaOfStudy { get; set; } = null!;
+    public DbSet<Subject> Subjects { get; set; } = null!;
+    public DbSet<LevelOfEducation> LevelOfEducation { get; set; } = null!;
+    public DbSet<FormOfEducation> FormOfEducation { get; set; } = null!;
+    public DbSet<AdditionalInformationAboutAreaOfStudy> AdditionalInformationAboutAreaOfStudy { get; set; } = null!;
+    public DbSet<AreaOfStudySubject> AreaOfStudySubject { get; set; } = null!;
+    public DbSet<DirectionsToDisplay> DirectionsToDisplay { get; set; } = null!;
 
     public ApplicationContext(DbContextOptions<ApplicationContext> options)
         : base(options)

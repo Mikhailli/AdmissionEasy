@@ -1,10 +1,9 @@
 ﻿#nullable enable
 using AdmissionEasy.Data.Domain.Interfaces;
 
-namespace AdmissionEasy.Models
+namespace AdmissionEasy.Models;
+
+public sealed class FormOfEducation : Entity<int>
 {
-    public sealed class FormOfEducation : Entity<int>
-    {
-        public string Title { get; set; } = null!;
-    }
+    public string Title { get; set; } = null!;
 }

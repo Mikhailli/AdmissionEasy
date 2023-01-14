@@ -1,4 +1,5 @@
-﻿using AdmissionEasy.Models;
+﻿using AdmissionEasy.Client.Services;
+using AdmissionEasy.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace AdmissionEasy;
@@ -18,6 +19,7 @@ public class Startup
         var connection = Configuration.GetConnectionString("DefaultConnection");
         services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connection));
         services.AddControllersWithViews();
+        services.AddHttpClient<DirectionsService>();
     }
  
     public void Configure(IApplicationBuilder app)

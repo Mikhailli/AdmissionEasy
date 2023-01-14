@@ -1,8 +1,11 @@
 ﻿#nullable enable
+using AdmissionEasy.Client.Services;
 using AdmissionEasy.Data.Implementation.SpecificRepositories;
 using AdmissionEasy.Data.Services;
 using AdmissionEasy.Extensions;
 using AdmissionEasy.Models;
+using AdmissionEasy.Models.ApiRequestModels;
+using AdmissionEasy.Models.DataTable;
 using AdmissionEasy.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,10 +14,12 @@ namespace AdmissionEasy.Controllers;
 
 public class DirectionsController : Controller
 {
+    private readonly DirectionsService _directionsService;
     private readonly DirectionsToDisplayService _directionsToDisplayService;
 
-    public DirectionsController(ApplicationContext context)
+    public DirectionsController(ApplicationContext context, HttpClient httpClient)
     {
+        _directionsService = new DirectionsService(httpClient);
         _directionsToDisplayService = new DirectionsToDisplayService(new EFDirectionsToDisplayRepository(context));
     }
     public IActionResult Index()
@@ -38,5 +43,30 @@ public class DirectionsController : Controller
             numbersOfPlacesOnPaid, passingScoresOnPaid, years);
 
         return View(directionsViewModel);
+    }
+
+    [HttpPost]
+    [Route("[controller]/get")]
+    public async Task<DataTableResponse<DirectionsToDisplay>> GetDirectionsAsync(DataTableRequest dataTableRequest)
+    {
+        var (orderColumnName, isAscending) = dataTableRequest.GetOrderColumn();
+        
+        var instituteFilter = string.IsNullOrEmpty(dataTableRequest.Columns[0].Search.Value) is false
+            ? new List<string> { dataTableRequest.Columns[0].Search.Value }
+            : new List<string>();
+        
+        var subjectFilter = string.IsNullOrEmpty(dataTableRequest.Columns[1].Search.Value) is false
+            ? new List<string> { dataTableRequest.Columns[1].Search.Value }
+            : new List<string>();
+
+        var selectParameters = new DirectionsSelectParameters(dataTableRequest.Start, dataTableRequest.Length,
+            dataTableRequest.Search.Value, orderColumnName ?? "PassingScoreOnBudget", isAscending, instituteFilter, subjectFilter);
+
+        var selectedData = await _directionsService.GetDirectionsAsync(selectParameters);
+
+        var dataTableResponse = new DataTableResponse<DirectionsToDisplay>(dataTableRequest.Draw,
+            selectedData.RecordsTotal, selectedData.RecordsFiltered, selectedData.Data);
+
+        return dataTableResponse;
     }
 }

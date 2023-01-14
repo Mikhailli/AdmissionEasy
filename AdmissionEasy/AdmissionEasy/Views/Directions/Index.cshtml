@@ -1,5 +1,4 @@
-﻿@using AdmissionEasy.Extensions
-@model AdmissionEasy.ViewModels.DirectionsViewModel
+﻿@model AdmissionEasy.ViewModels.DirectionsViewModel
 
 @{
     Layout = "_Layout";
@@ -8,16 +7,19 @@
     ViewBag.Title = "Directions";  
 }
 @functions {
-    private static string GetNumberEnd(int num)
+    private static List<string> GetUniqSubjects(List<string> subjects)
     {
-        if (num % 100 == 11 || num % 100 == 12 || num % 100 == 13 || num % 100 == 14)
-            return (num + " мест");
-        else if (num % 10 == 1)
-            return (num + " место");
-        else if (num % 10 == 2 || num % 10 == 3 || num % 10 == 4)
-            return (num + " места");
-        else
-            return (num + " мест");
+        var uniqSubjects = new List<string>();
+        foreach (var subject in subjects)
+        {
+            var separatedSubjects = subject.Replace(", ", "/").Split("/");
+            foreach (var sub in separatedSubjects)
+            {
+                uniqSubjects.Add(sub);
+            }
+        }
+
+        return uniqSubjects.Distinct().ToList();
     }
 }
 
@@ -31,11 +33,21 @@
         </div>
         <div class="d-flex flex-row px-2 py-2">
             <label class="my-auto mr-2" for="instituteFilter">Институт:</label>
-            <select class="form-control input-ktm" name="instituteFilter" id="instituteFilter">
+            <select class="instituteFilter" name="instituteFilter" id="instituteFilter">
                 <option value="">Все институты</option>
                 @foreach (var institute in Model.InstituteTitles.Distinct().OrderBy(title => title))
                 {
                     <option value="@institute">@institute</option>
+                }
+            </select>
+        </div>
+        <div class="d-flex flex-row px-2 py-2">
+            <label class="my-auto mr-2" for="subjectFilter">Предмет:</label>
+            <select class="subjectFilter" name="subjectFilter" id="subjectFilter">
+                <option value="">Все предметы</option>
+                @foreach (var subject in GetUniqSubjects(Model.Subjects))
+                {
+                    <option value="@subject">@subject</option>
                 }
             </select>
         </div>
@@ -44,88 +56,30 @@
   <div class="features">
       <table class="stripe row-border hover table-opacity-background display nowrap text-center" id="anime">
            <thead>
-            <tr>
-                <th>Специальность</th>
-                <th>Стоимость (руб/год)</th>
-                <th>Бюджетная основа</th>
-                <th>Платная основа</th>
-            </tr>
-        </thead>
-        <tbody>
-          @for(var i = 0; i < Model.EducationAreaTitles.Count; i++)
-              {
-                  <tr>
-                      <td>
-                          <div class="educationAreaInfo">
-                              <div>
-                                  <a class="spectitle">@(Model.EducationAreaTitles[i])</a>
-                              </div>
-                              <div>
-                                  <i>
-                                      @(Model.EducationLevelTitles[i] + " | " + Model.EducationFormTitles[i])
-                                  </i>
-                              </div>
-                              <div>
-                                  ЕГЭ:
-                                  <span>
-                                      @(Model.Subjects[i])
-                                  </span>
-                              </div>
-                          </div>
-                      </td>
-                      <td data-sort="@(Model.Costs[i].FillWithZerosAndConvertToString())" data-order="@(Model.Costs[i].FillWithZerosAndConvertToString())">
-                          <div style="text-align: center;">
-                              <a class="tooltipq" title="минимальная стоимость по специальности (руб/год)">
-                                  @("от " + Model.Costs[i] + " ")
-                                  ₽
-                              </a>
-                              <span class="yearVuzInfoSpan">
-                                  <a class="tooltipq fixToolT" title="информация о стоимости за 2023 год">
-                                      2023
-                                  </a>
-                              </span>
-                          </div>
-                      </td>
-                      <td>
-                          <div style="text-align: center;">
-                              <a class="tooltipq" title="минимальный суммарный проходной балл">
-                                  @("от " + Model.PassingScoresOnBudget[i])
-                              </a>
-                              <span class="yearVuzInfoSpan">
-                                  <a class="tooltipq fixToolT" title="информация о количестве мест за 2023 год">
-                                      2023
-                                  </a>
-                              </span>
-                          </div>
-                          <div style="text-align: center;">
-                              <a class="tooltipq" style="font-size: 11px; color: gray;" title="количество бюджетных мест на специальность">
-                                  @GetNumberEnd(Model.NumbersOfPlacesOnBudget[i])
-                              </a>
-                          </div>
-                      </td>
-                      <td>
-                          <div style="text-align: center;">
-                              <a class="tooltipq" title="минимальный суммарный проходной балл">
-                                  @("от " + Model.PassingScoresOnBudget[i])
-                              </a>
-                                  <span class="yearVuzInfoSpan">
-                                      <a class="tooltipq fixToolT" title="информация о количестве мест за 2023 год">
-                                          2023
-                                      </a>
-                                  </span>
-                          </div>
-                          <div style="text-align: center;">
-                              <a class="tooltipq" style="font-size: 11px; color: gray;" title="количество платных мест на специальность">
-                                  @GetNumberEnd(Model.NumbersOfPlacesOnBudget[i])
-                              </a>
-                          </div>
-                      </td>
-                  </tr>
-              }
-        </tbody>
+                <tr>
+                    <th>Специальность</th>
+                    <th>Стоимость (руб/год)</th>
+                    <th>Бюджетная основа</th>
+                    <th>Платная основа</th>
+                </tr>
+            </thead>
       </table>
   </div>
 <script src="//cdn.datatables.net/plug-ins/1.11.5/i18n/ru.json"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-<script src="~/js/indexMenu.js"></script>
+<script src="js/indexMenu.js"></script>
+
+<script>
+    buildDataTable()
+
+    $('#instituteFilter').change(function () {
+        var instituteTitle = $(this).val();
+        searchInColumn(0, instituteTitle)
+    })
+    
+    $('#subjectFilter').change(function () {
+        var subjectTitle = $(this).val();
+        searchInColumn(1, subjectTitle)
+    })
+</script>

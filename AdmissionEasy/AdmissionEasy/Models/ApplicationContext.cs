@@ -1,7 +1,6 @@
 ﻿#nullable enable
 using Microsoft.EntityFrameworkCore;
 
-
 namespace AdmissionEasy.Models;
 
 public sealed class ApplicationContext : DbContext
